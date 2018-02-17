@@ -1,0 +1,37 @@
+body {
+	background-image: url(../img/wallpaper.png);
+}
+
+.poster {
+	height: 100vh;
+}
+
+.about {
+	width: 20em;
+	height: 28em;
+	background-image: url(../img/paz_2.JPG);
+	background-size: cover;
+	background-position: bottom;
+	text-align: center;
+	color: #A0985C;
+	border: 1px solid black;
+	margin-top: 5em;
+}
+
+.about h2 {
+	font-family: 'Pacifico', cursive;
+	background-color: black;
+	}
+
+.about h4 {
+	margin-top: 7em;
+	font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+	background-color: black;
+}
+
+.about p {
+	font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+	background-color: black;
+}
