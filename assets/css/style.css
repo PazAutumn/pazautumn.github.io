@@ -1,136 +1,36 @@
 body {
+	font-family: 'Open Sans', sans-serif;
 	background-image: url(../img/wallpaper.png);
 }
 
-.about, .project, .skills, .contact  {
-	cursor: pointer;
+.side-nav {
+	background-color: #121214;
+	border-right: 1px solid #101010;
 }
 
-.about:hover , .project:hover , .skills:hover , .contact:hover {
-	font-size: 16px;
-	opacity: 0.8;
-	color: teal;
+.side-nav li a {
+	color: #51D2B7;
 }
 
-.about {
-	width: 20em;
-	height: 28em;
-	background-color: #000000;
-	text-align: center;
-	color: #FFFFFF;
-	margin-top: 5em;
-	display: inline-block;
+.divider {
+	background-color: #101010;
 }
 
-.about h4 {
-	font-family: 'Amatic SC', cursive;
-	font-weight: bold;
+.profile {
+	width: 100%;
+	height: auto;
+	border-radius: 100%;
+	border: 5px solid #101010;
 }
 
-.about p {
-	font-family: 'Amatic SC', cursive;
-
-	font-size: 1.5em;
+.myname {
+	font-family: 'Pacifico', cursive;
+	color: #101010;
 }
 
-.about-photo {
-	margin-top: 2em;
-	height: 15em;
-	border: 1px solid white;
-	background-image: url(../img/paz_2.JPG);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
 
-.project {
-	font-family: 'Amatic SC', cursive;
-	width: 16em;
-	height: 20em;
-	background-color: #000000;
-	text-align: center;
-	color: #FFFFFF;
-	margin-top: 3em;
-	display: inline-block;
-}
-
-.project-photo {
-	margin-top: 2em;
-	height: 10em;
-	border: 1px solid white;
-	background-image: url(../img/logosolo.png);
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-color: #0F0F0F;
-}
-
-.lab {
-	font-family: 'Open Sans';
-	width: 15em;
-	height: 10em;
-	background-size: cover;
-	background-position: bottom;
-	background-repeat: no-repeat;
-	background-color: #000000;
-	text-align: center;
-	color: #FFE521;
-	font-weight: 700;
-	display: inline-block;
-	filter: grayscale(30%);
-}
-
-.lab h1 {
-	font-weight: 800;
-}
-
-.skills {
-	font-family: 'Amatic SC', cursive;
-	width: 18em;
-	height: 20em;
-	background-size: cover;
-	background-position: bottom;
-	background-repeat: no-repeat;
-	background-color: #000000;
-	text-align: center;
-	color: #FFFFFF;
-	margin-top: 2em;
-	display: inline-block;
-}
-
-.skills-photo {
-	margin-top: 2em;
-	height: 10em;
-	border: 1px solid white;
-}
-
-.fa-file-code { 
-	padding-top: 0.5em;
-	font-size: 100px;
-}
-
-.contact {
-	font-family: 'Amatic SC', cursive;
-	width: 13em;
-	height: 16em;
-	background-color: #000000;
-	background-size: cover;
-	background-position: bottom;
-	background-repeat: no-repeat;
-	text-align: center;
-	color: #FFFFFF;
-	border: 1px solid black;
-	margin-top: 1em;
-	display: inline-block;
-}
-
-.fa-envelope {
-	padding-top: 0.5em;
-	font-size: 80px;
-}
-
-.contact-photo {
-	margin-top: 2em;
-	height: 8em;
-	border: 1px solid white;
+.fa-bars {
+	color: #51D2B7;
+	font-size: 50px;
+	margin: 5px;
 }
