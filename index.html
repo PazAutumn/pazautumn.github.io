@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans:400,700,800|Pacifico" rel="stylesheet">
+	 <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Open+Sans:400,700,800" rel="stylesheet">
 	<link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -13,15 +14,14 @@
 <body>
 <!-- Side-navbar -->
 	<section class="side-navbar">
-		<ul id="slide-out" class="side-nav fixed center-align">
+		<ul id="slide-out" class="side-nav center-align">
 			<li>
 				<div class="user-view center-align">
 					<div class="background">
 						<img src="assets/img/fondo1.jpg">
 					</div>
 					<div class="col s12">
-						<a href="#"><img class="profile" src="assets/img/paz_1.JPG"></a>
-						<h4 class="myname">Paz Contreras</h4>
+						<a href="#welcome"><img class="profile" src="assets/img/paz_1.jpg"></a>
 					</div>
 				</div>
 			</li>
@@ -34,13 +34,27 @@
 			<li class="contactbtn"><a href="#contact"><i class="fab fa-pagelines"></i> Contact</a></li>
 			<li><div class="divider"></div></li>
 		</ul>
-		<a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+		<a href="#" data-activates="slide-out" style="position: fixed; background-color: transparent; overflow: visible; z-index: 1" class="button-collapse"><i class="fas fa-bars"></i></a>
 	</section><!-- Side-navbar -->
 
+
 	<section id="welcome">
-		<h2 class="animated fadeInLeft" id="hello">Welcome <br> My name is Paz Contreras!</h2>
-		<h4 class="animated fadeInLeft" id="front"> I'm a Front-End Developer-Jr.</h4>
-		<canvas id="canvas"></canvas>
+		<h1 class="animated fadeInDown" id="hello">Welcome <br> My name is Paz Contreras! <br> <i class="fab fa-pagelines"></i></h1>
+		<h2 class="animated fadeInDown" id="front"> I'm a Front-End Developer-Jr.</h2>
+		<svg id="demo" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0" color-interpolation="sRGB">
+      <stop id="stop1a" offset="0%" stop-color="#12a3b4"></stop>
+      <stop id="stop1b" offset="100%" stop-color="#ff509e"></stop>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="0" color-interpolation="sRGB">
+      <stop id="stop2a" offset="0%" stop-color="#e3bc13"></stop>
+      <stop id="stop2b" offset="100%" stop-color="#00a78f"></stop>
+    </linearGradient>
+  </defs>
+  <rect id="rect1" x="0" y="0" width="1600" height="600" stroke="none" fill="url(#grad1)"></rect>
+  <rect id="rect2" x="0" y="0" width="1600" height="600" stroke="none" fill="url(#grad2)"></rect>
+</svg>
 	</section>
 
 	<section id="about">
@@ -83,6 +97,8 @@
 		</div>
 	</section>
 
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

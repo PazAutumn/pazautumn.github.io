@@ -20,211 +20,325 @@ $('.contactbtn').click(function() {
 	$('#contactme').attr('class', 'animated fadeInDown');
 })
 
-var canvas = document.getElementById('canvas'),
-  context = canvas.getContext('2d'),
-  canvasWidth = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth),
-  canvasHeight = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight),
-  requestAnimationFrame = window.requestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.msRequestAnimationFrame;
-var persons = [],
-  numberOfFirefly = 30,
-  birthToGive = 25;
+//////////////////////////////
+// Demo Functions
+//////////////////////////////
 
-var colors = [];
-/* Galactic Tea - http://www.colourlovers.com/palette/1586746/Galactic_Tea*/
-colors[2] = [];
-colors[2]['background'] = '#121214';
-colors[2][1] = 'rgba(81,210,183,';
-colors[2][2] = 'rgba(130,91,109,';
-colors[2][3] = 'rgba(185,136,131,';
-colors[2][4] = 'rgba(249,241,204,';
-
-var colorTheme = 2, //getRandomInt(0,colors.length-1);
-  mainSpeed = 1;
-
-function getRandomInt(min, max, exept) {
-  var i = Math.floor(Math.random() * (max - min + 1)) + min;
-  if (typeof exept == "undefined") return i;
-  else if (typeof exept == 'number' && i == exept) return getRandomInt(min, max, exept);
-  else if (typeof exept == "object" && (i >= exept[0] && i <= exept[1])) return getRandomInt(min, max, exept);
-  else return i;
-}
-
-function isEven(n) {
-  return n == parseFloat(n) ? !(n % 2) : void 0;
-}
-
-function degToRad(deg) {
-  return deg * (Math.PI / 180);
-}
-
-function Firefly(id) {
-  this.id = id;
-  this.width = getRandomInt(3, 6);
-  this.height = this.width;
-  this.x = getRandomInt(0, (canvas.width - this.width));
-  this.y = getRandomInt(0, (canvas.height - this.height));
-  this.speed = (this.width <= 10) ? 2 : 1;
-  this.alpha = 1;
-  this.alphaReduction = getRandomInt(1, 3) / 1000;
-  this.color = colors[colorTheme][getRandomInt(1, colors[colorTheme].length - 1)];
-  this.direction = getRandomInt(0, 360);
-  this.turner = getRandomInt(0, 1) == 0 ? -1 : 1;
-  this.turnerAmp = getRandomInt(1, 2);
-  this.isHit = false;
-  this.stepCounter = 0;
-  this.changeDirectionFrequency = getRandomInt(1, 200);
-  this.shape = 2; //getRandomInt(2,3);
-  this.shadowBlur = getRandomInt(5, 25);
-}
-
-Firefly.prototype.stop = function() {
-  this.update();
-}
-
-Firefly.prototype.walk = function() {
-  var next_x = this.x + Math.cos(degToRad(this.direction)) * this.speed,
-    next_y = this.y + Math.sin(degToRad(this.direction)) * this.speed;
-
-  // Canvas limits
-  if (next_x >= (canvas.width - this.width) && (this.direction < 90 || this.direction > 270)) {
-    next_x = canvas.width - this.width;
-    this.direction = getRandomInt(90, 270, this.direction);
-  }
-  if (next_x <= 0 && (this.direction > 90 && this.direction < 270)) {
-    next_x = 0;
-    var exept = [90, 270];
-    this.direction = getRandomInt(0, 360, exept);
-  }
-  if (next_y >= (canvas.height - this.height) && (this.direction > 0 && this.direction < 180)) {
-    next_y = canvas.height - this.height;
-    this.direction = getRandomInt(180, 360, this.direction);
-  }
-  if (next_y <= 0 && (this.direction > 180 && this.direction < 360)) {
-    next_y = 0;
-    this.direction = getRandomInt(0, 180, this.direction);
+function init(showStats) {
+  // stats
+  if (showStats) {
+    var stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0';
+    stats.domElement.style.top = '0';
+    document.body.appendChild(stats.domElement);
+    requestAnimationFrame(function updateStats(){
+      stats.update();
+      requestAnimationFrame(updateStats);
+    });
   }
 
-  this.x = next_x;
-  this.y = next_y;
+  // init
+  var svg = document.getElementById('demo');
+  tesselation.setup(svg);
+  gradients.setup();
 
-  this.stepCounter++;
+  var lastTransitionAt, transitionDelay = 5500, transitionDuration = 3000;
 
-  if (this.changeDirectionFrequency && this.stepCounter == this.changeDirectionFrequency) {
-    this.turner = this.turner == -1 ? 1 : -1;
-    this.turnerAmp = getRandomInt(1, 2);
-    this.stepCounter = 0;
-    this.changeDirectionFrequency = getRandomInt(1, 200);
+  function playNextTransition() {
+    tesselation.next(transitionDuration);
+    gradients.next(transitionDuration);
+  };
+
+  function tick(time) {
+    if (!lastTransitionAt || time - lastTransitionAt > transitionDelay) {
+      lastTransitionAt = time;
+      playNextTransition();
+    }
+    window.requestAnimationFrame(tick);
+  }
+  window.requestAnimationFrame(tick);
+}
+
+//////////////////////////////
+// Delaunay Triangulation
+//////////////////////////////
+
+var calcDelaunayTriangulation = (function() {
+  var EPSILON = 1.0 / 1048576.0;
+  function getSuperT(vertices) {
+    var xMin = Number.POSITIVE_INFINITY, yMin = Number.POSITIVE_INFINITY,
+        xMax = Number.NEGATIVE_INFINITY, yMax = Number.NEGATIVE_INFINITY,
+        i, xDiff, yDiff, maxDiff, xCenter, yCenter;
+    for(i = vertices.length; i--; ) {
+      if(vertices[i][0] < xMin) xMin = vertices[i][0];
+      if(vertices[i][0] > xMax) xMax = vertices[i][0];
+      if(vertices[i][1] < yMin) yMin = vertices[i][1];
+      if(vertices[i][1] > yMax) yMax = vertices[i][1];
+    }
+    xDiff = xMax - xMin;
+    yDiff = yMax - yMin;
+    maxDiff = Math.max(xDiff, yDiff);
+    xCenter = xMin + xDiff * 0.5;
+    yCenter = yMin + yDiff * 0.5;
+    return [
+      [xCenter - 20 * maxDiff, yCenter - maxDiff],
+      [xCenter, yCenter + 20 * maxDiff],
+      [xCenter + 20 * maxDiff, yCenter - maxDiff]
+    ];
+  }
+  function circumcircle(vertices, i, j, k) {
+    var xI = vertices[i][0], yI = vertices[i][1],
+        xJ = vertices[j][0], yJ = vertices[j][1],
+        xK = vertices[k][0], yK = vertices[k][1],
+        yDiffIJ = Math.abs(yI - yJ), yDiffJK = Math.abs(yJ - yK),
+        xCenter, yCenter, m1, m2, xMidIJ, xMidJK, yMidIJ, yMidJK, xDiff, yDiff;
+    // bail condition
+    if(yDiffIJ < EPSILON && yDiffJK < EPSILON)
+      throw new Error("Can't get circumcircle since all 3 points are y-aligned");
+    // calc circumcircle center x/y, radius
+    m1  = -((xJ - xI) / (yJ - yI));
+    m2  = -((xK - xJ) / (yK - yJ));
+    xMidIJ = (xI + xJ) / 2.0;
+    xMidJK = (xJ + xK) / 2.0;
+    yMidIJ = (yI + yJ) / 2.0;
+    yMidJK = (yJ + yK) / 2.0;
+    xCenter = (yDiffIJ < EPSILON) ? xMidIJ :
+      (yDiffJK < EPSILON) ? xMidJK :
+      (m1 * xMidIJ - m2 * xMidJK + yMidJK - yMidIJ) / (m1 - m2);
+    yCenter  = (yDiffIJ > yDiffJK) ?
+      m1 * (xCenter - xMidIJ) + yMidIJ :
+      m2 * (xCenter - xMidJK) + yMidJK;
+    xDiff = xJ - xCenter;
+    yDiff = yJ - yCenter;
+    // return
+    return {i: i, j: j, k: k, x: xCenter, y: yCenter, r: xDiff * xDiff + yDiff * yDiff};
+  }
+  function dedupeEdges(edges) {
+    var i, j, a, b, m, n;
+    for(j = edges.length; j; ) {
+      b = edges[--j]; a = edges[--j];
+      for(i = j; i; ) {
+        n = edges[--i]; m = edges[--i];
+        if((a === m && b === n) || (a === n && b === m)) {
+          edges.splice(j, 2); edges.splice(i, 2);
+          break;
+        }
+      }
+    }
+  }
+  return function(vertices) {
+    var n = vertices.length,
+        i, j, indices, st, candidates, locked, edges, dx, dy, a, b, c;
+    // bail if too few / too many verts
+    if(n < 3 || n > 2000)
+      return [];
+    // copy verts and sort indices by x-position
+    vertices = vertices.slice(0);
+    indices = new Array(n);
+    for(i = n; i--; )
+      indices[i] = i;
+    indices.sort(function(i, j) {
+      return vertices[j][0] - vertices[i][0];
+    });
+    // supertriangle
+    st = getSuperT(vertices);
+    vertices.push(st[0], st[1], st[2]);
+    // init candidates/locked tris list
+    candidates = [circumcircle(vertices, n + 0, n + 1, n + 2)];
+    locked = [];
+    edges = [];
+    // scan left to right
+    for(i = indices.length; i--; edges.length = 0) {
+      c = indices[i];
+      // check candidates tris against point
+      for(j = candidates.length; j--; ) {
+        // lock tri if point to right of circumcirc
+        dx = vertices[c][0] - candidates[j].x;
+        if(dx > 0.0 && dx * dx > candidates[j].r) {
+          locked.push(candidates[j]);
+          candidates.splice(j, 1);
+          continue;
+        }
+        // point outside circumcirc = leave candidates
+        dy = vertices[c][1] - candidates[j].y;
+        if(dx * dx + dy * dy - candidates[j].r > EPSILON)
+          continue;
+        // point inside circumcirc = break apart, save edges
+        edges.push(
+          candidates[j].i, candidates[j].j,
+          candidates[j].j, candidates[j].k,
+          candidates[j].k, candidates[j].i
+        );
+        candidates.splice(j, 1);
+      }
+      // new candidates from broken edges
+      dedupeEdges(edges);
+      for(j = edges.length; j; ) {
+        b = edges[--j];
+        a = edges[--j];
+        candidates.push(circumcircle(vertices, a, b, c));
+      }
+    }
+    // close candidates tris, remove tris touching supertri verts
+    for(i = candidates.length; i--; )
+      locked.push(candidates[i]);
+    candidates.length = 0;
+    for(i = locked.length; i--; )
+      if(locked[i].i < n && locked[i].j < n && locked[i].k < n)
+        candidates.push(locked[i].i, locked[i].j, locked[i].k);
+    // done
+    return candidates;
+  };
+})();
+
+var tesselation = (function() {
+  var svg, svgW, svgH, prevGroup;
+
+  function createRandomTesselation() {
+    var wW = window.innerWidth;
+    var wH = window.innerHeight;
+
+    var gridSpacing = 250, scatterAmount = 0.75;
+    var gridSize, i, x, y;
+
+    if (wW / wH > svgW / svgH) { // window wider than svg = use width for gridSize
+      gridSize = gridSpacing * svgW / wW;
+    } else { // window taller than svg = use height for gridSize
+      gridSize = gridSpacing * svgH / wH;
+    }
+
+    var vertices = [];
+    var xOffset = (svgW % gridSize) / 2, yOffset = (svgH % gridSize) / 2;
+    for (x = Math.floor(svgW/gridSize) + 1; x >= -1; x--) {
+      for (y = Math.floor(svgH/gridSize) + 1; y >= -1; y--) {
+        vertices.push(
+          [
+            xOffset + gridSize * (x + scatterAmount * (Math.random() - 0.5)),
+            yOffset + gridSize * (y + scatterAmount * (Math.random() - 0.5))
+          ]
+        );
+      }
+    }
+
+    var triangles = calcDelaunayTriangulation(vertices);
+
+    var group = document.createElementNS('http://www.w3.org/2000/svg','g');
+    var polygon;
+    for(i = triangles.length; i; ) {
+      polygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+      polygon.setAttribute('points',
+        vertices[triangles[--i]][0] + ',' + vertices[triangles[i]][1] + ' ' +
+        vertices[triangles[--i]][0] + ',' + vertices[triangles[i]][1] + ' ' +
+        vertices[triangles[--i]][0] + ',' + vertices[triangles[i]][1]
+      );
+      group.appendChild(polygon);
+    }
+
+    return group;
   }
 
-  this.direction += this.turner * this.turnerAmp;
+  return {
+    setup: function(svgElement) {
+      svg = svgElement;
+      var vb = svg.getAttribute('viewBox').split(/\D/g);
+      svgW = vb[2];
+      svgH = vb[3];
+    },
+    next: function(t) {
+      var toRemove, i, n;
+      t /= 1000;
 
-  this.update();
-}
-
-Firefly.prototype.takeOppositeDirection = function() {
-  // Right -> Left
-  if ((this.direction >= 0 && this.direction < 90) || (this.direction > 270 && this.direction <= 360)) {
-    this.direction = getRandomInt(90, 270);
-    return;
+      if (prevGroup && prevGroup.children && prevGroup.children.length) {
+        toRemove = prevGroup;
+        n = toRemove.children.length;
+        for (i = n; i--; ) {
+          TweenMax.to(toRemove.children[i], t*0.4, {opacity: 0, delay: t*(0.3*i/n)});
+        }
+        TweenMax.delayedCall(t * (0.7 + 0.05), function(group) { svg.removeChild(group); }, [toRemove], this);
+      }
+      var g = createRandomTesselation();
+      n = g.children.length;
+      for (i = n; i--; ) {
+        TweenMax.fromTo(g.children[i], t*0.4, {opacity: 0}, {opacity: 0.3 + 0.25 * Math.random(), delay: t*(0.3*i/n + 0.3), ease: Back.easeOut});
+      }
+      svg.appendChild(g);
+      prevGroup = g;
+    }
   }
-  // Left -> Right
-  if (this.direction > 90 && this.direction < 270) {
-    var exept = [90, 270];
-    this.direction = getRandomInt(0, 360, exept);
-    return;
-  }
-  // Down -> Up
-  if (this.direction > 0 && this.direction < 180) {
-    this.direction = getRandomInt(180, 360);
-    return;
-  }
-  // Up -> Down
-  if (this.direction > 180) {
-    this.direction = getRandomInt(0, 180);
-  }
-}
+})();
 
-Firefly.prototype.update = function() {
+//////////////////////////////
+// Gradients
+//////////////////////////////
 
-  context.beginPath();
+var gradients = (function() {
+  var grad1, grad2, showingGrad1;
 
-  context.fillStyle = this.color + this.alpha + ")";
-  context.arc(this.x + (this.width / 2), this.y + (this.height / 2), this.width / 2, 0, 2 * Math.PI, false);
-  context.shadowColor = this.color + this.alpha + ")";
-  context.shadowBlur = this.shadowBlur;
-  context.shadowOffsetX = 0;
-  context.shadowOffsetY = 0;
-  context.fill();
+  // using colors from IBM Design Colors this time
+  var colors = [ // 14 colors - use 3-5 span
+    '#3c6df0', // ultramarine50
+    '#12a3b4', // aqua40
+    '#00a78f', // teal40
+    '#00aa5e', // green40
+    '#81b532', // lime30
+    '#e3bc13', // yellow20
+    '#ffb000', // gold20
+    '#fe8500', // orange30
+    '#fe6100', // peach40
+    '#e62325', // red50
+    '#dc267f', // magenta50
+    '#c22dd5', // purple50
+    '#9753e1', // violet50
+    '#5a3ec8'  // indigo60
+  ];
 
-  if (this.id > 15) {
-    this.alpha -= this.alphaReduction;
-    if (this.alpha <= 0) this.die();
-  }
-
-}
-
-Firefly.prototype.die = function() {
-  persons[this.id] = null;
-  delete persons[this.id];
-}
-
-window.onload = function() {
-  canvas.setAttribute('width', canvasWidth);
-  canvas.setAttribute('height', canvasHeight);
-
-  start();
-}
-
-function start() {
-  instantiatePopulation();
-  animate();
-}
-
-function instantiatePopulation() {
-  var i = 0;
-  while (i < numberOfFirefly) {
-    persons[i] = new Firefly(i);
-    i++;
-  }
-}
-
-function animate() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  context.beginPath();
-
-  // Création d'une copie de l'array persons
-  persons_order = persons.slice(0);
-  // Tri par ordre de position sur l'axe y (afin de gérer les z-index)
-  persons_order.sort(function(a, b) {
-    return a.y - b.y
-  });
-
-  // Paint les instances dans l'ordre trié
-  for (var i in persons_order) {
-    var u = persons_order[i].id;
-    persons[u].walk();
+  function assignRandomColors(gradObj) {
+    var rA = Math.floor(colors.length * Math.random());
+    var rB = Math.floor(Math.random() * 3) + 3; // [3 - 5]
+    rB = (rA + (rB * (Math.random() < 0.5 ? -1 : 1)) + colors.length) % colors.length;
+    gradObj.stopA.setAttribute('stop-color', colors[rA]);
+    gradObj.stopB.setAttribute('stop-color', colors[rB]);
   }
 
-  requestAnimationFrame(animate);
-}
+  return {
+    setup: function() {
+      showingGrad1 = false;
+      grad1 = {
+        stopA: document.getElementById('stop1a'),
+        stopB: document.getElementById('stop1b'),
+        rect:  document.getElementById('rect1')
+      };
+      grad2 = {
+        stopA: document.getElementById('stop2a'),
+        stopB: document.getElementById('stop2b'),
+        rect:  document.getElementById('rect2')
+      };
+      grad1.rect.style.opacity = 0;
+      grad2.rect.style.opacity = 0;
+    },
+    next: function(t) {
+      t /= 1000;
 
-canvas.onclick = function(e) {
-  giveBirth(e, birthToGive);
-}
+      var show, hide;
+      if (showingGrad1) {
+        hide = grad1;
+        show = grad2;
+      } else {
+        hide = grad2;
+        show = grad1;
+      }
+      showingGrad1 = !showingGrad1;
 
-function giveBirth(e, u) {
-  var i = persons.length;
-  persons[i] = new Firefly(i);
-  persons[i].x = e.layerX;
-  persons[i].y = e.layerY;
+      TweenMax.to(hide.rect, 0.55*t, {opacity: 0, delay: 0.2*t, ease: Sine.easeOut});
+      assignRandomColors(show);
+      TweenMax.to(show.rect, 0.65*t, {opacity: 1, ease: Sine.easeIn});
+    }
+  };
+})();
 
-  if (u > 1) giveBirth(e, u - 1);
-}
+//////////////////////////////
+// Start
+//////////////////////////////
 
-
-
-
+init();
