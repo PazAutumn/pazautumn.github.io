@@ -74,6 +74,7 @@ body {
 	position: absolute;
   font-size: 4em;
   padding-top: 2em;
+  line-height: 1.3em;
   font-weight: bolder;
   background-color: #51D2B7;
   align-self: center;
@@ -102,7 +103,6 @@ body {
 	background-color: #7DC3C8;
 }
 
-.display {
-	width: 100%;
-	height: 100vh;
+#skills h1, #contact h1, #about h1, #projects h1 {
+  font-weight: 800;
 }
