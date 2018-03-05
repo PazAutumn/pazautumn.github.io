@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans:400,700,800|Pacifico" rel="stylesheet">
-	<link rel="stylesheet" href="assets/magic/magic.min.css">
 	<link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -14,35 +13,75 @@
 <body>
 <!-- Side-navbar -->
 	<section class="side-navbar">
-		<ul id="slide-out" class="side-nav center-align">
+		<ul id="slide-out" class="side-nav fixed center-align">
 			<li>
 				<div class="user-view center-align">
 					<div class="background">
 						<img src="assets/img/fondo1.jpg">
 					</div>
 					<div class="col s12">
-						<img class="profile" src="assets/img/paz_1.JPG">
+						<a href="#"><img class="profile" src="assets/img/paz_1.JPG"></a>
 						<h4 class="myname">Paz Contreras</h4>
 					</div>
 				</div>
 			</li>
-			<li class="center-align"><a href="#!"><i class="fab fa-pagelines"></i> About</a></li>
+			<li class="aboutbtn center-align"><a href="#about"><i class="fab fa-pagelines"></i> About</a></li>
 			<li><div class="divider"></div></li>
-			<li><a href="#!"><i class="fas fa-leaf"></i> Skills</a></li>
+			<li class="skillsbtn"><a href="#skills"><i class="fas fa-leaf"></i> Skills</a></li>
 			<li><div class="divider"></div></li>
-			<li><a href="#!"><i class="fab fa-envira"></i> Projects</a></li>
+			<li class="projectsbtn"><a href="#projects"><i class="fab fa-envira"></i> Projects</a></li>
 			<li><div class="divider"></div></li>
-			<li><a href="#!"><i class="fab fa-pagelines"></i> Contact</a></li>
+			<li class="contactbtn"><a href="#contact"><i class="fab fa-pagelines"></i> Contact</a></li>
 			<li><div class="divider"></div></li>
 		</ul>
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
 	</section><!-- Side-navbar -->
-		
-	<section class="welcome">
-		
+
+	<section id="welcome">
+		<h2 class="animated fadeInLeft" id="hello">Welcome <br> My name is Paz Contreras!</h2>
+		<h4 class="animated fadeInLeft" id="front"> I'm a Front-End Developer-Jr.</h4>
+		<canvas id="canvas"></canvas>
 	</section>
 
+	<section id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center-align">
+					<h1 id="aboutme">About me</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 
+	<section id="skills">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center-align">
+					<h1 id="myskills">Skills</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="projects">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center-align">
+					<h1 id="myprojects">Projects</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center-align">
+					<h1 id="contactme">Contact me</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
