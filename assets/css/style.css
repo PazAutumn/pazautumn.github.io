@@ -1,16 +1,12 @@
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-}
-
 body {
   background: #e0e6eb;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
 }
 
 svg {
   width: 100%;
-  height: 100vh%;
+  height: 100vh;
 }
 svg g {
   mix-blend-mode: lighten;
@@ -18,11 +14,6 @@ svg g {
 svg polygon {
   stroke: none;
   fill: white;
-}
-
-body {
-  font-family: 'Amatic SC', cursive;
-  font-weight: 700;
 }
 
 .side-nav {
@@ -47,7 +38,7 @@ body {
 
 .fa-bars {
   color: #51D2B7;
-  font-size: 50px;
+  font-size: 80px;
   padding: 5px;
 }
 
@@ -102,28 +93,21 @@ body {
 }
 
 @media (max-width: 600px) {
-  .aboutbtn a {
-    font-size: 10px;
-    color: black;
+  .side-nav li a {
+    font-size: 26px;
   }
   #welcome h1 {
-    width: 250px;
-    height: 250px;
-    font-size: 4em;
-  padding-top: 2em;
-  line-height: 1.3em;
-  font-weight: bolder;
-  background-color: #51D2B7;
-  align-self: center;
-  opacity: 0.5;
-  border-radius: 100%;
-}
-
-#welcome h2 {
-  font-size: 3em;
-  padding-top: 5em;
-  position: absolute;
-  align-self: center;
-}
-  
+    width: 280px;
+    height: 280px;
+    font-size: 2.3em;
+    padding-top: 1.6em;
+  }
+  #welcome h2 {
+    font-size: 1.7em;
+    padding-top: 4.5em;
+    font-weight: bold;
+  }
+  .fa-bars {
+  font-size: 60px;
+  }
 }
