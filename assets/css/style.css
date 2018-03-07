@@ -1,9 +1,9 @@
 body {
 	width: 100%;
-	height: 100%;
-  background: #e0e6eb;
+	height: auto;
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
+  background-color: #7DC3C8;
 }
 
 svg {
@@ -39,7 +39,7 @@ svg polygon {
 }
 
 .fa-bars {
-  color: #51D2B7;
+  color: #BBEBE1;
   font-size: 80px;
   padding: 5px;
 }
@@ -79,21 +79,27 @@ svg polygon {
 }
 
 #skills, #contact {
-  width: 100%;
+	width: 100%;
   height: 100vh;
-  color: #BBEBE1;
   background-color: #AD99E6;
 }
 
 #about, #projects {
-  width: 100%;
+	width: 100%;
   height: 100vh;
-  color: #BBEBE1;
   background-color: #7DC3C8;
 }
 
 #skills h1, #contact h1, #about h1, #projects h1 {
+  color: #fff;
   font-weight: 800;
+}
+
+#about img {
+	width: 100px;
+	height: 100px;
+	filter: grayscale(100%);
+	border-radius: 20%;
 }
 
 @media (max-width: 600px) {
@@ -116,5 +122,8 @@ svg polygon {
   }
   .fa-bars {
   font-size: 60px;
+  }
+  #about, .awards {
+  	height: auto;
   }
 }

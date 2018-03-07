@@ -5,7 +5,7 @@ $(document).ready(function() {
 })
 
 $('.aboutbtn').click(function() {
-	$('#aboutme').attr('class', 'animated fadeInDown');
+	$('.about-cont').attr('class', 'animated fadeInDown');
 })
 
 $('.skillsbtn').click(function() {
