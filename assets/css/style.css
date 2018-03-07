@@ -90,14 +90,18 @@ svg polygon {
   background-color: #7DC3C8;
 }
 
+#about {
+	height: auto;
+}
+
 #skills h1, #contact h1, #about h1, #projects h1 {
   color: #fff;
   font-weight: 800;
 }
 
 #about img {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	filter: grayscale(100%);
 	border-radius: 20%;
 }
@@ -123,7 +127,8 @@ svg polygon {
   .fa-bars {
   font-size: 60px;
   }
-  #about, .awards {
-  	height: auto;
-  }
+  #about img {
+	width: 100px;
+	height: 100px;
+	}
 }
