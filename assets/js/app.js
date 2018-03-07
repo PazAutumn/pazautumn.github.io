@@ -1,23 +1,25 @@
 $(document).ready(function() {
-	$(".button-collapse").sideNav();
+	$(".button-collapse").sideNav({
+      menuWidth: 250,
+    });
 	$(".button-collapse").sideNav('hide');
 	$('.collapsible').collapsible();
 })
 
 $('.aboutbtn').click(function() {
-	$('.about-cont').attr('class', 'animated fadeInDown');
+	$('.about-cont').addClass('animated fadeInDown');
 })
 
 $('.skillsbtn').click(function() {
-	$('#myskills').attr('class', 'animated fadeInDown');
+	$('#myskills').addClass('animated fadeInDown');
 })
 
 $('.projectsbtn').click(function() {
-	$('#myprojects').attr('class', 'animated fadeInDown');
+	$('#myprojects').addClass('animated fadeInDown');
 })
 
 $('.contactbtn').click(function() {
-	$('#contactme').attr('class', 'animated fadeInDown');
+	$('#contactme').addClass('animated fadeInDown');
 })
 
 //////////////////////////////
