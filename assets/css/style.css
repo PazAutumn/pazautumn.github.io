@@ -126,6 +126,27 @@ svg polygon {
   color: #fff;
 }
 
+.devicon-css3-plain, .devicon-html5-plain, .devicon-jquery-plain-wordmark, .devicon-javascript-plain,
+.devicon-bootstrap-plain, .devicon-sass-original, .devicon-github-plain {
+  color: white;
+  font-size: 5em;
+}
+
+.materializelogo {
+  width: 7em;
+  height: auto;
+}
+
+.leaf {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.leaf i {
+  align-self: center;
+}
+
 @media (max-width: 600px) {
   .side-nav li a {
     font-size: 26px;
