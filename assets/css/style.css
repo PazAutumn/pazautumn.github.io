@@ -1,7 +1,6 @@
 body {
-	width: 100%;
-	height: auto;
-  font-family: 'Amatic SC', cursive;
+  width: 100%;
+  height: auto;
   font-weight: 700;
   background-color: #7DC3C8;
 }
@@ -54,7 +53,7 @@ svg polygon {
 }
 
 .container-welcome {
-	width: 550px;
+  width: 550px;
   height: 550px;
   background-color: #51D2B7;
   opacity: 0.5;
@@ -79,13 +78,17 @@ svg polygon {
 }
 
 #skills, #contact {
-	width: 100%;
+  width: 100%;
   height: auto;
   background-color: #AD99E6;
 }
 
+#contact {
+  height: 100vh;
+}
+
 #about, #projects {
-	width: 100%;
+  width: 100%;
   height: auto;
   background-color: #7DC3C8;
 }
@@ -97,13 +100,17 @@ svg polygon {
 }
 
 #about img {
-	width: 150px;
-	height: 150px;
-	filter: grayscale(100%);
-	border-radius: 20%;
+  width: 150px;
+  height: 150px;
+  filter: grayscale(100%);
+  border-radius: 20%;
 }
 
-.about-cont, .skills-cont, .project-cont, .con {
+.about-cont, .skills-cont, .project-cont, .contact-cont {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.tooltipped {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -134,7 +141,7 @@ svg polygon {
 }
 
 .leaf {
-  height: 70vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -142,12 +149,13 @@ svg polygon {
 
 .leaf i {
   align-self: center;
+  color: #fff;
 }
 
 .leaf-skills {
   font-size: 50px;
   color: #AD99E6;
-  background-color: #3333;
+  background-color: #51D2B7;
   border-radius: 100%;
   padding: 50px;
 }
@@ -161,6 +169,24 @@ svg polygon {
   color: #f2f2f2;
   font-weight: lighter;
 }
+
+.contact-cont {
+  font-family: 'Open Sans', sans-serif !important;
+  padding: 100px;
+}
+
+.contact-cont a {
+  background-color: #51D2B7;
+  border-radius: 100%;
+  padding: 50px;
+
+}
+
+.contact-cont a i {
+  font-size: 2.2em;
+  color: #fff;
+}
+
 
 @media (max-width: 600px) {
   .side-nav li a {
@@ -184,11 +210,20 @@ svg polygon {
   font-size: 60px;
   }
   #about img {
-	width: 100px;
-	height: 100px;
-	}
+    width: 100px;
+    height: 100px;
+  }
+  
+  .img-res img {
+    width: 200px !important;;
+    height: 200px !important;;
+    border-radius: 100% !important;;
+  }
   .text, .lab-awards {
     opacity: 1;
+  }
+  .leaf {
+  height: 40vh;
   }
 }
 
