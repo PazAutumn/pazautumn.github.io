@@ -134,7 +134,7 @@ svg polygon {
 }
 
 .leaf {
-  height: 60vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -147,9 +147,19 @@ svg polygon {
 .leaf-skills {
   font-size: 50px;
   color: #AD99E6;
-  background-color: #51D2B7;
+  background-color: #3333;
   border-radius: 100%;
   padding: 50px;
+}
+
+.skills-cont h5 {
+  color: #f2f2f2;
+  font-weight: bolder;
+}
+
+.skills-cont p {
+  color: #f2f2f2;
+  font-weight: lighter;
 }
 
 @media (max-width: 600px) {
