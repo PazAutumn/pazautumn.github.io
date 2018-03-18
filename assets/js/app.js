@@ -6,21 +6,26 @@ $(document).ready(function() {
 	$('.collapsible').collapsible();
 })
 
-$('.aboutbtn').click(function() {
-	$('.about-cont').addClass('animated fadeInDown');
+  $('.aboutbtn').click(function() {
+  	$('.about-cont').addClass('animated fadeInDown');
+  })
+
+  $('.skillsbtn').click(function() {
+  	$('#myskills').addClass('animated fadeInDown');
+  })
+
+  $('.projectsbtn').click(function() {
+  	$('#myprojects').addClass('animated fadeInDown');
+  })
+
+  $('.contactbtn').click(function() {
+  	$('#contactme').addClass('animated fadeInDown');
+
+  $('.foo').smoove({
+    offset:'40%',
+  })
 })
 
-$('.skillsbtn').click(function() {
-	$('#myskills').addClass('animated fadeInDown');
-})
-
-$('.projectsbtn').click(function() {
-	$('#myprojects').addClass('animated fadeInDown');
-})
-
-$('.contactbtn').click(function() {
-	$('#contactme').addClass('animated fadeInDown');
-})
 
 //////////////////////////////
 // Demo Functions
