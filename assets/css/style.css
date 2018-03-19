@@ -1,8 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   width: 100%;
   height: auto;
   font-weight: 700;
-  background-color: #AD99E6;
 }
 
 svg {
@@ -15,6 +20,10 @@ svg g {
 svg polygon {
   stroke: none;
   fill: white;
+}
+
+.row {
+  margin-bottom: 0;
 }
 
 .side-nav {
@@ -82,10 +91,15 @@ svg polygon {
   width: 100%;
   height: auto;
   background-color: #AD99E6;
+  padding: 50px;
 }
 
 #contact {
   height: 100vh;
+}
+
+#projects {
+  padding: 50px;
 }
 
 .about-paz, #projects {
@@ -95,7 +109,7 @@ svg polygon {
 }
 
 #skills h1, #contact h1, #projects h1 {
-  color: #fff;
+  color: #772C57;
   font-weight: 800;
   font-family: 'Amatic SC', cursive;
 }
@@ -120,6 +134,7 @@ svg polygon {
 
 .awards h4 {
   font-weight: 800;
+  color: #772C57;
 }
 
 .about-paz {
@@ -127,7 +142,6 @@ svg polygon {
   height: auto;
   font-weight: lighter;
   font-family: 'Open Sans', sans-serif;
-  
 }
 
 .photo-paz {
@@ -176,7 +190,7 @@ svg polygon {
 }
 
 .skills-cont h5 {
-  color: #f2f2f2;
+  color: #772C57;
   font-weight: bolder;
 }
 
@@ -191,15 +205,21 @@ svg polygon {
 }
 
 .contact-cont a i {
-  font-size: 6em;
+  font-size: 4em;
   color: #fff;
   cursor: pointer;
   padding: 20px;
 }
 
 #workto {
-  color: #531676;
+  color: #772C57;
   font-weight: bolder;
+}
+
+footer {
+  padding: 20px 0;
+  background-color: #7DC3C8;
+  color: #772C57;
 }
 
 
@@ -281,7 +301,7 @@ svg polygon {
   max-width: 315px;
   max-height: 220px;
   width: 100%;
-  color: #222222;
+  color: #fff;
   text-align: right;
   font-size: 16px;
   background-color: transparent;
@@ -311,7 +331,7 @@ svg polygon {
   z-index: 1;
   opacity: 1;
   padding: 30px 0 30px 10px;
-  background-color: #B487C3;
+  background-color: #772C57;
   width: 40%;
   -webkit-transform: translateX(150%);
   transform: translateX(150%);
@@ -328,7 +348,7 @@ svg polygon {
   height: 0;
   border-style: solid;
   border-width: 120px 120px 120px 0;
-  border-color: transparent #B487C3 transparent transparent;
+  border-color: transparent #772C57 transparent transparent;
 }
 
 .projectsList:after {
