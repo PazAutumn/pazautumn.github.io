@@ -88,23 +88,20 @@ svg polygon {
   height: 100vh;
 }
 
-#about, #projects {
+.about-paz, #projects {
   width: 100%;
   height: auto;
   background-color: #7DC3C8;
 }
 
-#skills h1, #contact h1, #about h1, #projects h1 {
+#skills h1, #contact h1, #projects h1 {
   color: #fff;
   font-weight: 800;
   font-family: 'Amatic SC', cursive;
 }
 
-#about img {
-  width: 150px;
-  height: 150px;
-  filter: grayscale(100%);
-  border-radius: 20%;
+.about-cont {
+  margin-top: 15%;
 }
 
 .about-cont, .skills-cont, .project-cont, .contact-cont {
@@ -118,7 +115,23 @@ svg polygon {
 .awards {
   font-family: 'Amatic SC', cursive;
   color: #fff;
+  margin-top: 20px;
+}
+
+.awards h4 {
   font-weight: 800;
+}
+
+.about-paz {
+  width: 100%;
+  height: auto;
+  font-weight: lighter;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+.photo-paz {
+  padding: 0 !important;
 }
 
 .text {
@@ -143,7 +156,7 @@ svg polygon {
 }
 
 .leaf {
-  height: 100vh;
+  margin-top: 30%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -174,23 +187,18 @@ svg polygon {
 
 .contact-cont {
   font-family: 'Open Sans', sans-serif !important;
-  padding: 100px;
-}
-
-.contact-cont a {
-  background-color: #51D2B7;
-  border-radius: 100%;
-  padding: 50px;
-
+  margin: 50px;
 }
 
 .contact-cont a i {
-  font-size: 2.2em;
+  font-size: 6em;
   color: #fff;
+  cursor: pointer;
+  padding: 20px;
 }
 
 #workto {
-  color: #fff;
+  color: #531676;
   font-weight: bolder;
 }
 
@@ -216,22 +224,40 @@ svg polygon {
   .fa-bars {
   font-size: 60px;
   }
-  #about img {
-    width: 100px;
-    height: 100px;
-  }
-  
   .img-res img {
-    width: 200px !important;;
-    height: 200px !important;;
-    border-radius: 100% !important;;
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 100% !important;
   }
   .text, .lab-awards {
     opacity: 1;
   }
   .leaf {
-  height: 40vh;
+    height: 40vh;
   }
+  #aboutPaz {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .about-cont {
+    text-align: center;
+  }
+  .awards {
+    margin-top: 0;
+  }
+  .contact-cont {
+    padding: 0;
+    margin: 10px;
+  }
+  .contact-cont a {
+    padding: 20px;
+  }
+  .contact-cont a i {
+    font-size: 3em;
+    color: #fff;
+  }
+
 }
 
 /*hover de project*/
