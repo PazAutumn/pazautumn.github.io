@@ -6,25 +6,31 @@ $(document).ready(function() {
 	$('.collapsible').collapsible();
 })
 
-  $('.aboutbtn').click(function() {
-  	$('.about-cont').addClass('animated fadeInDown');
+  $('.foo-about').smoove({
+    opacity: '0',
+    moveX: '300px',
   })
 
-  $('.skillsbtn').click(function() {
-  	$('#myskills').addClass('animated fadeInDown');
+  $('.foo-skills').smoove({
+    opacity:'0',
+    moveZ:"-500px",
+    moveY: "200px",
+    rotateX: "90deg",
   })
 
-  $('.projectsbtn').click(function() {
-  	$('#myprojects').addClass('animated fadeInDown');
+  $('.foo-title').smoove({
+    opacity:'0',
+    moveZ:"200px",
   })
 
-  $('.contactbtn').click(function() {
-  	$('#contactme').addClass('animated fadeInDown');
-
-  $('.foo').smoove({
-    offset:'40%',
+  $('.foo-projects').smoove({
+    opacity:'0',
+    moveZ:"-200px",
   })
-})
+
+  $('.foo-contact').smoove({
+    scale:'1.5',
+  })
 
 
 //////////////////////////////

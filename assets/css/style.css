@@ -66,7 +66,7 @@ svg polygon {
   height: 550px;
   background-color: #51D2B7;
   font-family: 'Amatic SC', cursive;
-  opacity: 0.5;
+  opacity: 0.8;
   border-radius: 100%;
   position: absolute;
   font-weight: 800;
@@ -87,7 +87,7 @@ svg polygon {
   font-size: 3em;
 }
 
-#skills, #contact {
+#skills {
   width: 100%;
   height: auto;
   background-color: #AD99E6;
@@ -95,14 +95,23 @@ svg polygon {
 }
 
 #contact {
-  height: 100vh;
-}
-
-#projects {
+  height: auto;
+  text-align: center;
+  background-color: #AD99E6;
   padding: 50px;
 }
 
-.about-paz, #projects {
+.project-cont {
+  padding: 80px;
+}
+
+.about-paz {
+  width: 100%;
+  height: 100vh;
+  background-color: #7DC3C8;
+}
+
+#projects {
   width: 100%;
   height: auto;
   background-color: #7DC3C8;
@@ -183,10 +192,17 @@ svg polygon {
 
 .leaf-skills {
   font-size: 50px;
-  color: #AD99E6;
   background-color: #51D2B7;
   border-radius: 100%;
   padding: 50px;
+}
+
+.leaf-contact {
+  font-size: 30px;
+  background-color: #51D2B7;
+  border-radius: 100%;
+  padding: 30px;
+  color: white;
 }
 
 .skills-cont h5 {
@@ -242,7 +258,7 @@ footer {
     margin-top: 10px;
   }
   .fa-bars {
-  font-size: 60px;
+    font-size: 60px;
   }
   .img-res img {
     width: 200px !important;
@@ -266,18 +282,20 @@ footer {
   .awards {
     margin-top: 0;
   }
-  .contact-cont {
-    padding: 0;
-    margin: 10px;
+  .icon-cont {
+    margin: 20px 0;
   }
-  .contact-cont a {
-    padding: 20px;
+  .contact-cont {
+    margin: 0;
   }
   .contact-cont a i {
     font-size: 3em;
     color: #fff;
+    padding: 0;
   }
-
+  footer p {
+    text-align: center;
+  }
 }
 
 /*hover de project*/
@@ -391,13 +409,31 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 20px 30px;
-  font-size: 44px;
+  padding: 20px 20px;
+  font-size: 34px;
   color: #222222;
   opacity: 0;
 }
 
 .projectsList a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.projectsList span i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px 20px;
+  font-size: 34px;
+  color: #222222;
+  opacity: 0;
+}
+
+.projectsList span a {
   position: absolute;
   top: 0;
   bottom: 0;
