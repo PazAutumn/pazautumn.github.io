@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   $('.foo-title').smoove({
     opacity:'0',
-    moveZ:"200px",
+    moveY:"100px",
   })
 
   $('.foo-projects').smoove({
