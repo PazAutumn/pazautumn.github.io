@@ -8,13 +8,13 @@ $(document).ready(function() {
 
   $('.foo-about').smoove({
     opacity: '0',
-    moveX: '300px',
+    moveX: '100px',
   })
 
   $('.foo-skills').smoove({
     opacity:'0',
     moveZ:"-500px",
-    moveY: "200px",
+    moveY: "100px",
     rotateX: "90deg",
   })
 
@@ -29,7 +29,7 @@ $(document).ready(function() {
   })
 
   $('.foo-contact').smoove({
-    scale:'1.5',
+    scale:'1.3',
   })
 
 
