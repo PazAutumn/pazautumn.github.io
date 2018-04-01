@@ -108,7 +108,7 @@ svg polygon {
 }
 
 .project-cont {
-  padding: 80px;
+  padding: 30px 0;
 }
 
 .about-paz {
@@ -280,10 +280,14 @@ footer {
   #aboutPaz {
     width: 100%;
     height: auto;
+    margin: 10px 0;
     text-align: center;
   }
   .about-cont {
     text-align: center;
+  }
+  #skills {
+    padding: 10px 0;
   }
   .awards {
     margin-top: 0;
@@ -301,6 +305,9 @@ footer {
   }
   footer p {
     text-align: center;
+  }
+  .allProjects {
+    padding: 0;
   }
 }
 
