@@ -16,6 +16,11 @@ body {
   font-weight: 700;
 }
 
+a {
+  color: #333;
+  pointer-events: visible;
+}
+
 svg {
   width: 100%;
   height: 100vh;
@@ -63,34 +68,51 @@ svg polygon {
   height: 100vh;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .container-welcome {
-  width: 550px;
-  height: 550px;
-  background-color: #51D2B7;
-  font-family: 'Amatic SC', cursive;
+  /* width: 550px; */
+  /* height: 550px; */
+  /* background-color: #51D2B7; */
+  font-family: "Special Gothic Expanded One", sans-serif;
   opacity: 0.8;
-  border-radius: 100%;
+  /* border-radius: 100%; */
   position: absolute;
   font-weight: 800;
-  justify-content: center;
+  justify-content: left;
   align-content: center;
-  text-align: center;
-  color: #fff;
+  text-align: left;
+  padding-right: 100px;
+  letter-spacing: 3px;
+  color: #333;
 }
 
 .container-welcome h1 {
   font-size: 4em;
-  padding-top: 1.2em;
-  line-height: 1.3em;
+  padding-top: 5.2em;
+  line-height: 0.6em;
   font-weight: bolder;
 }
 
-.container-welcome h2 {
-  font-size: 3em;
+.container-welcome h4 {
+  font-family: "Poetsen One", sans-serif;
+  font-size: 1.8em;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.links {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  letter-spacing: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.links span a:hover {
+  color: #fff;
 }
 
 #skills {
@@ -101,9 +123,11 @@ svg polygon {
 }
 
 #contact {
-  height: auto;
+  width: 100%;
+  height: 90vh;
   text-align: center;
-  background-color: #AD99E6;
+  background: #585b61;
+  background: linear-gradient(0deg, rgba(88, 91, 97, 1) 0%, rgba(205, 186, 208, 1) 100%);
   padding: 50px;
 }
 
@@ -114,23 +138,63 @@ svg polygon {
 .about-paz {
   width: 100%;
   height: 100vh;
-  background-color: #7DC3C8;
+  background: #585b61;
+  background: linear-gradient(0deg, rgba(88, 91, 97, 1) 0%, rgba(205, 186, 208, 1) 100%);
+  font-weight: lighter;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.resume a {
+  color: #674156;
+  font-size: 18px;
+  font-weight: 800;
+  pointer-events: visible;
+}
+
+.resume i {
+  font-size: 30px;
+  padding-right: 5px;
+}
+
+.resume a:hover {
+  color: #403c3c;
+}
+
+.about-paz .links {
+  letter-spacing: 12px;
+  text-align: center;
+}
+
+.about-paz .fa-pagelines {
+  font-size: 50px;
 }
 
 #projects {
   width: 100%;
-  height: auto;
-  background-color: #7DC3C8;
+  height: 100vh;
+  background: #585b61;
+  background: linear-gradient(180deg,rgba(88, 91, 97, 1) 0%, rgba(205, 186, 208, 1) 100%);
 }
 
 #skills h1, #contact h1, #projects h1 {
-  color: #772C57;
+  color: #fff;
   font-weight: 800;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Poetsen One", sans-serif;
 }
 
 .about-cont {
   margin-top: 15%;
+}
+.about-cont h4 {
+  font-family: "Poetsen One", sans-serif;
+}
+.about-cont h1 {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  color: #772C57;
 }
 
 .about-cont, .skills-cont, .project-cont, .contact-cont {
@@ -152,15 +216,13 @@ svg polygon {
   color: #772C57;
 }
 
-.about-paz {
-  width: 100%;
-  height: auto;
-  font-weight: lighter;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .photo-paz {
   padding: 0 !important;
+}
+
+.photo-paz img {
+  height: 102vh !important;
+  max-width: 102%;
 }
 
 .text {
@@ -205,7 +267,7 @@ svg polygon {
 
 .leaf-contact {
   font-size: 30px;
-  background-color: #51D2B7;
+  background-color: #b5a1ea;
   border-radius: 100%;
   padding: 30px;
   color: white;
@@ -240,7 +302,7 @@ svg polygon {
 
 footer {
   padding: 20px 0;
-  background-color: #7DC3C8;
+  background-color: #b5a1ea;
   color: #772C57;
 }
 
@@ -277,11 +339,9 @@ footer {
   .leaf {
     height: 40vh;
   }
-  #aboutPaz {
+  #about {
     width: 100%;
-    height: auto;
-    margin: 10px 0;
-    text-align: center;
+    height: 100vh;
   }
   .about-cont {
     text-align: center;
@@ -472,3 +532,4 @@ footer {
   transform: translateX(0);
 opacity: 1;
 }
+
